@@ -1,7 +1,30 @@
+
+
 table,
 th,
 td {
-	border: 1px solid black;
+	border: 1px solid rgba(129, 62, 6, 0.637);
 	border-collapse: collapse;
-	border-style: dotted;
+}
+
+th,
+td {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+tr:nth-child(even) {
+	background-color: rgb(1, 133, 143);
+	/* background-color: black; */
+}
+
+title {
+	display: none;
+}
+
+body {
+	background-color: rgb(0, 171, 184);
+	color: seashell;
 }
