@@ -1,0 +1,19 @@
+{
+  "name": "inventorysite",
+  "version": "0.0.1",
+  "description": "Site for the inventory system to manage inventory and config",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ThrMrAnderson",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mqtt": "^4.3.7"
+  }
+}

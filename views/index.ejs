@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<meta charset="utf-8"
+		<title>Inventory</title>
+	</head>
+
+	<body>
+		<table>
+			<tr>
+				<th>Item Number</th>
+				<th>Description</th>
+				<th>Qty</th>
+				<th>Location</th>
+			</tr>
+
+			<% for (var i=0; i < data.length; i++) { %>
+				<tr>
+					<td>
+						<%= data[i].ItemNumber %>
+					</td>
+					<td>
+						<%= data[i].Description %>
+					</td>
+					<td>
+						<%= data[i].CurrentQty %>
+					</td>
+					<td>
+						<%= data[i].Location %>
+					</td>
+				</tr>
+				<% } %>
+		</table>
+
+	</body>
+</html>
