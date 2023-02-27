@@ -12,6 +12,9 @@
 				<th>Item Number</th>
 				<th>Description</th>
 				<th>Qty</th>
+				<th>Type</th>
+				<th>Min Qty</th>
+				<th>Mfg Part</th>
 				<th>Location</th>
 			</tr>
 
@@ -27,11 +30,24 @@
 						<%= data[i].CurrentQty %>
 					</td>
 					<td>
+						<%= data[i].InventoryType === 0 ? 'Piece' : 'Bulk' %>
+					</td>
+					<td>
+						<%= data[i].MinQty %>
+					</td>
+					<td>
+						<%= data[i].Manufacturer + ' ' + data[i].PartNumber %>
+					</td>
+					<td>
 						<%= data[i].Location %>
 					</td>
+					<td><input type="button" class="button" onclick="editTableRow('<%= data[i].ItemNumber %>')" value="Edit" /></td>
 				</tr>
 				<% } %>
 		</table>
 
 	</body>
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="/js/site.js"></script>
 </html>

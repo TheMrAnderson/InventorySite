@@ -15,9 +15,8 @@ td {
 	padding-right: 5px;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
 	background-color: rgb(1, 133, 143);
-	/* background-color: black; */
 }
 
 title {
@@ -26,5 +25,10 @@ title {
 
 body {
 	background-color: rgb(0, 171, 184);
+	color: seashell;
+}
+
+.button {
+	background-color: rgb(1, 133, 143);
 	color: seashell;
 }
