@@ -4,6 +4,8 @@ const g = require('./code/global');
 const mqtt = require('mqtt');
 const express = require('express')
 require('dotenv').config();
+const addUpdateView = require('./code/addUpdate')
+const consumeView = require('./code/consume')
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -72,6 +74,9 @@ g.Globals.mqttClient.on('message', function (topic, message, packet) {
 app.get('/', (req, res) => {
 	res.render('index', { data: g.Globals.invListData });
 })
+app.use(express.urlencoded())
+app.use('/consume', consumeView)
+app.use('/addUpdate', addUpdateView)
 
 app.listen(port, () => {
 	// log.verbose()
