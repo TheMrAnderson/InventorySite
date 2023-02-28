@@ -1,5 +1,5 @@
 const g = require('../global');
-const m = require('mqtt');
+// const m = require('mqtt');
 
 const error = async (err, message) => {
 	try {
@@ -31,7 +31,7 @@ function createLogObject(message, err) {
 }
 
 async function sendData(objString) {
-	m.publish(objString, g.Globals.logTopic);
+	// m.publish(objString, g.Globals.logTopic);
 }
 
 module.exports = {
