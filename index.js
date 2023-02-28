@@ -72,7 +72,10 @@ g.Globals.mqttClient.on('message', function (topic, message, packet) {
 // log.verbose('App Started')
 
 app.get('/', (req, res) => {
-	res.render('index', { data: g.Globals.invListData });
+	if (g.Globals.invListData == undefined)
+		res.render('nolist')
+	else
+		res.render('index', { data: g.Globals.invListData });
 })
 app.use(express.urlencoded())
 app.use('/consume', consumeView)
