@@ -7,7 +7,22 @@
 </head>
 
 <body>
-
+	<form action="/AddUpdate" method="post" id="itemNumber">
+		<label for="itemNumber">Item Number:</label>
+		<input type="text" id="itemNumber" name="itemNumber" autofocus="autofocus"><br>
+		<input type="number" id="currentQty" name="currentQty"><br>
+		<input type="text" id="description" name="description"><br>
+		<input type="text" id="sourceUrl" name="sourceUrl"><br>
+		<input type="number" id="inventoryType" name="inventoryType"><br>
+		<input type="text" id="manufacturer" name="manufacturer"><br>
+		<input type="text" id="partNumber" name="partNumber"><br>
+		<input type="number" id="minQty" name="minQty"><br>
+		<input type="text" id="location" name="location"><br>
+		<input type="submit" value="Submit">
+	</form>
 </body>
 
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="/js/site.js"></script>
 </html>
