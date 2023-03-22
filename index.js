@@ -2,7 +2,8 @@ const p = require('node:process');
 const log = require('./code/helpers/ca_log');
 const g = require('./code/global');
 const mqtt = require('mqtt');
-const express = require('express')
+const express = require('express');
+const helmet = require('helmet');
 require('dotenv').config();
 const addUpdateView = require('./code/addUpdate')
 const consumeView = require('./code/consume')
@@ -10,6 +11,7 @@ const consumeView = require('./code/consume')
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(helmet());
 
 // Begin reading from stdin so the process does not exit
 p.stdin.resume();
