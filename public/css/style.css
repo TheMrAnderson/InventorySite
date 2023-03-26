@@ -24,8 +24,8 @@ title {
 }
 
 body {
-	background-color: rgb(0, 171, 184);
-	color: seashell;
+	background-color: rgb(0, 171, 184) !important;;
+	color: seashell !important;;
 }
 
 .button {

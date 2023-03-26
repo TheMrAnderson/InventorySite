@@ -1,12 +1,12 @@
 const p = require('node:process');
-const log = require('./code/helpers/ca_log');
-const g = require('./code/global');
+const log = require('./helpers/ca_log');
+const g = require('./global');
 const mqtt = require('mqtt');
 const express = require('express');
 const helmet = require('helmet');
 require('dotenv').config();
-const addUpdateView = require('./code/addUpdate')
-const consumeView = require('./code/consume')
+const addUpdateView = require('./addUpdate')
+const consumeView = require('./consume')
 
 const app = express();
 app.set('view engine', 'ejs');

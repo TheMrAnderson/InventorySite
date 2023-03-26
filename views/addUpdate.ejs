@@ -2,11 +2,12 @@
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="js" type="js" href="/js/site.js" <meta charset="utf-8" <title>Add/Update</title>
+	<%- include('./partials/head'); %>
+	<title>Add/Update</title>
 </head>
 
 <body>
+	<%- include('./partials/nav'); %>
 	<form action="/AddUpdate" method="post" id="itemNumber">
 		<label for="itemNumber">Item Number:</label>
 		<input type="text" id="itemNumber" name="itemNumber" autofocus="autofocus"><br>
