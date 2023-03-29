@@ -13,7 +13,7 @@
       "runtimeExecutable": "/home/rooster/.nvm/versions/node/v19.8.1/bin/node",
       "env": {
         "LOGTOPIC": "logs",
-        "TOPICFOLDER": "inventory_dev",
+        "TOPICFOLDER": "inventory_prod",
         "MQTTSERVERADDRESS": "mqtt://172.30.62.2"
       }
     }
