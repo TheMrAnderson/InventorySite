@@ -3,18 +3,21 @@
 
 <head>
 	<%- include('./partials/head'); %>
-	<title>Consume</title>
+		<title>Consume</title>
 </head>
 
-<body>
+<body class="invBody">
 	<%- include('./partials/nav'); %>
-	<form action="/Consume" method="post" id="itemNumber">
-		<label for="itemNumber">Item Number:</label>
-		<input type="text" id="itemNumber" name="itemNumber" autofocus="autofocus"><br><br>
-		<input type="submit" value="Submit">
-	</form>
+		<span class="invPage">
+			<form action="/Consume" method="post" id="itemNumber">
+				<label for="itemNumber">Item Number:</label>
+				<input type="text" id="itemNumber" name="itemNumber" autofocus="autofocus"><br><br>
+				<input type="submit" value="Submit">
+			</form>
+		</span>
 </body>
 
-	<script src="js/bootstrap.min.js"></script>
-	<script src="/js/site.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="/js/site.js"></script>
+
 </html>

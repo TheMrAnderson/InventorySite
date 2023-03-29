@@ -3,27 +3,59 @@
 
 <head>
 	<%- include('./partials/head'); %>
-	<title>Add/Update</title>
+		<title>Add/Update</title>
 </head>
 
-<body>
+<body class="invBody">
 	<%- include('./partials/nav'); %>
-	<form action="/AddUpdate" method="post" id="itemNumber">
-		<label for="itemNumber">Item Number:</label>
-		<input type="text" id="itemNumber" name="itemNumber" autofocus="autofocus"><br>
-		<input type="number" id="currentQty" name="currentQty"><br>
-		<input type="text" id="description" name="description"><br>
-		<input type="text" id="sourceUrl" name="sourceUrl"><br>
-		<input type="number" id="inventoryType" name="inventoryType"><br>
-		<input type="text" id="manufacturer" name="manufacturer"><br>
-		<input type="text" id="partNumber" name="partNumber"><br>
-		<input type="number" id="minQty" name="minQty"><br>
-		<input type="text" id="location" name="location"><br>
-		<input type="submit" value="Submit">
-	</form>
+		<span class="invPage">
+			<form action="/AddUpdate" method="post" id="itemNumber">
+				<div>
+					<label for="itemNumber">Item Number:</label>
+					<input type="text" id="itemNumber" name="itemNumber" disabled><br>
+				</div>
+				<div>
+					<label for="description">Item Description:</label>
+					<input type="text" id="description" name="description"><br>
+				</div>
+				<div>
+					<label for="currentQty">Current Qty:</label>
+					<input type="number" id="currentQty" name="currentQty"><br>
+				</div>
+				<div>
+					<label for="sourceUrl">Source URL:</label>
+					<input type="text" id="sourceUrl" name="sourceUrl"><br>
+				</div>
+				<div>
+					<label for="inventoryType">Inventory Type:</label>
+					<select name="inventoryType" id="inventoryType">
+						<option value="0">Piece</option>
+						<option value="1">Bulk</option>
+					</select>
+				</div>
+				<div>
+					<label for="manufacturer">Manufacturer:</label>
+					<input type="text" id="manufacturer" name="manufacturer"><br>
+				</div>
+				<div>
+					<label for="partNumber">Part Number:</label>
+					<input type="text" id="partNumber" name="partNumber"><br>
+				</div>
+				<div>
+					<label for="minQty">Min Qty:</label>
+					<input type="number" id="minQty" name="minQty"><br>
+				</div>
+				<div>
+					<label for="location">Location:</label>
+					<input type="text" id="location" name="location"><br>
+				</div>
+				<input type="submit" value="Submit">
+			</form>
+		</span>
 </body>
 
 
-	<script src="js/bootstrap.min.js"></script>
-	<script src="/js/site.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="/js/site.js"></script>
+
 </html>
