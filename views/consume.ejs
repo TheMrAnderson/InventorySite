@@ -7,17 +7,17 @@
 </head>
 
 <body class="invBody">
-	<%- include('./partials/nav'); %>
-		<span class="invPage">
-			<form action="/Consume" method="post" id="itemNumber">
-				<label for="itemNumber">Item Number:</label>
-				<input type="text" id="itemNumber" name="itemNumber" autofocus="autofocus"><br><br>
-				<input type="submit" value="Submit">
-			</form>
-		</span>
-</body>
+	<header>
+		<%- include('./partials/nav'); %>
+	</header>
 
-<script src="js/bootstrap.min.js"></script>
-<script src="/js/site.js"></script>
+	<main class="invPage">
+		<form action="/Consume" method="post" id="itemNumber">
+			<label for="itemNumber">Item Number:</label>
+			<input type="text" id="itemNumber" name="itemNumber" autofocus="autofocus"><br><br>
+			<input type="submit" value="Submit">
+		</form>
+	</main>
+</body>
 
 </html>

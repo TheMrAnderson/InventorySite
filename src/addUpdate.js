@@ -7,16 +7,26 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-	res.render('addUpdate')
+	const itemNumber = req.query.itemNumber
+	let invItem;
+	if (itemNumber === null || itemNumber === undefined) {
+		;
+	} else {
+		invItem = g.Globals.invListData.find(i => i.ItemNumber == itemNumber);
+	}
+
+	res.render('addUpdate', {
+		data: invItem
+	});
 });
 
 router.post('/', (req, res) => {
 	const opt = { qos: 2 };
 	const obj = {
 		ItemNumber: Number(req.body.itemNumber),
-		CurrentQty: req.body.currentQty,
+		CurrentQty: Number(req.body.currentQty),
 		Description: req.body.description,
-		SourceUrl: req.body.sourceUrl,
+		SourceURL: req.body.sourceUrl,
 		InventoryType: Number(req.body.inventoryType),
 		Manufacturer: req.body.manufacturer,
 		PartNumber: req.body.partNumber,

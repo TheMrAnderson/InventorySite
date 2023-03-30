@@ -4,55 +4,57 @@
 <head>
 	<%- include('./partials/head'); %>
 		<title>Inventory List</title>
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'" /> -->
+
 </head>
 
 <body class="invBody">
-	<%- include('./partials/nav'); %>
-		<span class="invPage">
-			<table>
+	<header>
+		<%- include('./partials/nav'); %>
+	</header>
+
+	<main class="invPage">
+		<table>
+			<tr>
+				<th>Item Number</th>
+				<th>Description</th>
+				<th>Qty</th>
+				<th>Type</th>
+				<th>Min Qty</th>
+				<th>Mfg Part</th>
+				<th>Location</th>
+				<th></th>
+			</tr>
+
+			<% for (var i=0; i < data.length; i++) { %>
 				<tr>
-					<th>Item Number</th>
-					<th>Description</th>
-					<th>Qty</th>
-					<th>Type</th>
-					<th>Min Qty</th>
-					<th>Mfg Part</th>
-					<th>Location</th>
-					<th></th>
+					<td>
+						<%= data[i].ItemNumber %>
+					</td>
+					<td>
+						<%= data[i].Description %>
+					</td>
+					<td>
+						<%= data[i].CurrentQty %>
+					</td>
+					<td>
+						<%= data[i].InventoryType===0 ? 'Piece' : 'Bulk' %>
+					</td>
+					<td>
+						<%= data[i].MinQty %>
+					</td>
+					<td>
+						<%= data[i].Manufacturer + ' ' + data[i].PartNumber %>
+					</td>
+					<td>
+						<%= data[i].Location %>
+					</td>
+					<td><input type="button" class="button" onclick="editTableRow('<%= data[i].ItemNumber %>')"
+							value="Edit" /></td>
 				</tr>
-
-				<% for (var i=0; i < data.length; i++) { %>
-					<tr>
-						<td>
-							<%= data[i].ItemNumber %>
-						</td>
-						<td>
-							<%= data[i].Description %>
-						</td>
-						<td>
-							<%= data[i].CurrentQty %>
-						</td>
-						<td>
-							<%= data[i].InventoryType===0 ? 'Piece' : 'Bulk' %>
-						</td>
-						<td>
-							<%= data[i].MinQty %>
-						</td>
-						<td>
-							<%= data[i].Manufacturer + ' ' + data[i].PartNumber %>
-						</td>
-						<td>
-							<%= data[i].Location %>
-						</td>
-						<td><input type="button" class="button" onclick="editTableRow('<%= data[i].ItemNumber %>')"
-								value="Edit" /></td>
-					</tr>
-					<% } %>
-			</table>
-		</span>
+				<% } %>
+		</table>
+	</main>
 </body>
-
-<script src="js/bootstrap.min.js"></script>
-<script src="/js/site.js"></script>
 
 </html>
