@@ -28,10 +28,9 @@ g.Globals.mqttServerAddress = process.env.MQTTSERVERADDRESS;
 g.validateConfig();
 const port = process.env.PORT || 3000;
 
-// https://github.com/mqttjs/MQTT.js
 g.Globals.mqttClient = mqtt.connect(g.Globals.mqttServerAddress);
-
 g.Globals.mqttClient.on('connect', function () {
+	console.log('MQTT Connecting... please wait')
 	const opt = { qos: 2, retain: true };
 	g.Globals.mqttClient.subscribe(g.Globals.invUpdatedTopic, opt, function (err) {
 		if (err) {
@@ -92,7 +91,7 @@ app.get('/', (req, res) => {
 	else
 		res.render('index', { data: g.Globals.invListData });
 })
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }))
 app.use('/consume', consumeView)
 app.use('/addUpdate', addUpdateView)
 
