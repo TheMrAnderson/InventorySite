@@ -4,8 +4,6 @@
 <head>
 	<%- include('./partials/head'); %>
 		<title>Inventory List</title>
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'" /> -->
-
 </head>
 
 <body class="invBody">
@@ -23,7 +21,7 @@
 				<th>Min Qty</th>
 				<th>Mfg Part</th>
 				<th>Location</th>
-				<th></th>
+				<th>URL</th>
 			</tr>
 
 			<% for (var i=0; i < data.length; i++) { %>
@@ -32,7 +30,7 @@
 						<%= data[i].ItemNumber %>
 					</td>
 					<td>
-						<%= data[i].Description %>
+						<a href="/addUpdate?itemNumber=<%= data[i].ItemNumber %>"><%= data[i].Description %></a>
 					</td>
 					<td>
 						<%= data[i].CurrentQty %>
@@ -49,8 +47,9 @@
 					<td>
 						<%= data[i].Location %>
 					</td>
-					<td><input type="button" class="button" onclick="editTableRow('<%= data[i].ItemNumber %>')"
-							value="Edit" /></td>
+					<td>
+						<a href="<%= data[i].SourceURL %>"><%= data[i].SourceURL == '' ? '' : 'Link' %></a>
+					</td>
 				</tr>
 				<% } %>
 		</table>

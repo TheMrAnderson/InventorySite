@@ -51,8 +51,8 @@ g.Globals.mqttClient.on('connect', function () {
 		}
 	})
 
-	console.log('App online and listening for events');
-	log.verbose('App online and listening for events');
+	console.log('MQTT connected and listening for events');
+	log.verbose('MQTT connected and listening for events');
 })
 
 g.Globals.mqttClient.on('message', function (topic, message, packet) {
@@ -64,15 +64,28 @@ g.Globals.mqttClient.on('message', function (topic, message, packet) {
 		obj = JSON.parse(stringBuf);
 	}
 
-	if (topic === g.Globals.invUpdatedTopic)
+	if (topic === g.Globals.invUpdatedTopic) {
+		obj.sort((a, b) => {
+			let fa = a.Description.toLowerCase(),
+				fb = b.Description.toLowerCase();
+
+			if (fa < fb) {
+				return -1;
+			}
+			if (fa > fb) {
+				return 1;
+			}
+			return 0;
+		});
+
 		g.Globals.invListData = obj;
+	}
 
 	if (topic === g.Globals.shoppingListTopic)
 		g.Globals.shoppingListData = obj;
 })
 
 // log.verbose('App Started')
-
 app.get('/', (req, res) => {
 	if (g.Globals.invListData == undefined)
 		res.render('nolist')
@@ -85,7 +98,7 @@ app.use('/addUpdate', addUpdateView)
 
 app.listen(port, () => {
 	// log.verbose()
-	console.log('App listening');
+	console.log('Website listening');
 })
 
 // Close the client when the app is closing
