@@ -36,7 +36,7 @@
 }
 
 .menu li {
-  padding: 5px 14px;
+  padding: 5px 5px;
 }
 
 /* DROPDOWN MENU */
@@ -59,7 +59,7 @@
 }
 
 .dropdown li {
-  padding: 0.5em 1em;
+  padding: 0.5em 0.5em;
   width: 8em;
   text-align: center;
 }
@@ -118,7 +118,6 @@ input[type=checkbox] {
 
   .dropdown {
     left: 50%;
-    top: 30px;
     transform: translateX(35%);
   }
 
