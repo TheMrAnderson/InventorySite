@@ -7,55 +7,56 @@
 </head>
 
 <body class="invBody">
-	<%- include('./partials/nav'); %>
-		<span class="invPage">
-			<form action="/AddUpdate" method="post" id="itemNumber">
+	<header>
+		<%- include('./partials/nav'); %>
+	</header>
+
+	<main class="invPage">
+		<form action="/AddUpdate" method="post" id="itemNumber">
+			<% if (locals.data=='undefined' ) { var data; } %>
 				<div>
 					<label for="itemNumber">Item Number:</label>
-					<input type="text" id="itemNumber" name="itemNumber" disabled><br>
+					<input type="text" id="itemNumber" name="itemNumber" readonly
+						style="color: Grey; opacity: 1;"  value="<%=data?.ItemNumber %>"><br>
 				</div>
 				<div>
 					<label for="description">Item Description:</label>
-					<input type="text" id="description" name="description"><br>
+					<input type="text" id="description" name="description" value="<%= data?.Description %>"><br>
 				</div>
 				<div>
 					<label for="currentQty">Current Qty:</label>
-					<input type="number" id="currentQty" name="currentQty"><br>
+					<input type="number" id="currentQty" name="currentQty" value="<%= data?.CurrentQty %>"><br>
 				</div>
 				<div>
 					<label for="sourceUrl">Source URL:</label>
-					<input type="text" id="sourceUrl" name="sourceUrl"><br>
+					<input type="text" id="sourceUrl" name="sourceUrl" value="<%= data?.SourceURL %>"><br>
 				</div>
 				<div>
 					<label for="inventoryType">Inventory Type:</label>
 					<select name="inventoryType" id="inventoryType">
-						<option value="0">Piece</option>
-						<option value="1">Bulk</option>
+						<option value="0" <%= data?.InventoryType == 0 ? 'selected' : '' %>>Piece</option>
+						<option value="1" <%= data?.InventoryType==1 ? 'selected' : '' %>>Bulk</option>
 					</select>
 				</div>
 				<div>
 					<label for="manufacturer">Manufacturer:</label>
-					<input type="text" id="manufacturer" name="manufacturer"><br>
+					<input type="text" id="manufacturer" name="manufacturer" value="<%= data?.Manufacturer %>"><br>
 				</div>
 				<div>
 					<label for="partNumber">Part Number:</label>
-					<input type="text" id="partNumber" name="partNumber"><br>
+					<input type="text" id="partNumber" name="partNumber" value="<%= data?.PartNumber %>"><br>
 				</div>
 				<div>
 					<label for="minQty">Min Qty:</label>
-					<input type="number" id="minQty" name="minQty"><br>
+					<input type="number" id="minQty" name="minQty" value="<%= data?.MinQty %>"><br>
 				</div>
 				<div>
 					<label for="location">Location:</label>
-					<input type="text" id="location" name="location"><br>
+					<input type="text" id="location" name="location" value="<%= data?.Location %>"><br>
 				</div>
 				<input type="submit" value="Submit">
-			</form>
-		</span>
+		</form>
+	</main>
 </body>
-
-
-<script src="js/bootstrap.min.js"></script>
-<script src="/js/site.js"></script>
 
 </html>

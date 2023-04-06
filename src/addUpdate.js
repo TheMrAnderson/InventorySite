@@ -23,7 +23,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 	const opt = { qos: 2 };
 	const obj = {
-		ItemNumber: Number(req.body.itemNumber),
 		CurrentQty: Number(req.body.currentQty),
 		Description: req.body.description,
 		SourceURL: req.body.sourceUrl,
@@ -33,14 +32,21 @@ router.post('/', (req, res) => {
 		MinQty: Number(req.body.minQty),
 		Location: req.body.location
 	}
+	if (req.body.itemNumber.length > 0)
+		obj.ItemNumber = req.body.itemNumber;
 	g.Globals.mqttClient.publish(g.Globals.addUpdateItemTopic, JSON.stringify(obj), opt, function (err) {
 		if (err) {
 			console.log(err);
 		}
 	});
 
-	// Go back to the main addUpdate page
-	res.render('addUpdate')
+	if (req.body.itemNumber.length > 0) {
+		// Go back to the list
+		res.render('index', { data: g.Globals.invListData });
+	} else {
+		// Reload this page to allow additional items to be added
+		res.render('addUpdate')
+	}
 });
 
 module.exports = router
