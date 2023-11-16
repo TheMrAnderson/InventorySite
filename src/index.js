@@ -29,6 +29,7 @@ g.Globals.invUpdatedTopic = process.env.INVENTORYUPDATEDTOPIC || `${topicFolder}
 g.Globals.actionResponseTopic = process.env.ACTIONRESPONSETOPIC || `${topicFolder}/actionresponse`;
 g.Globals.shoppingListTopic = process.env.SHOPPINGLISTTOPIC || `${topicFolder}/shoppinglist`;
 g.Globals.mqttServerAddress = process.env.MQTTSERVERADDRESS;
+g.Globals.maxRateLimit = process.env.MAXRATELIMIT || 20;
 g.validateConfig();
 const port = process.env.PORT || 3000;
 

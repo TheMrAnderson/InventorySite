@@ -1,12 +1,11 @@
 const setRateLimit = require("express-rate-limit");
+const g = require('./global');
 
 // Rate limit middleware
-const maxLimit = 20;
-
 const rateLimitMiddleware = setRateLimit({
 	windowMs: 60 * 1000,
-	max: maxLimit,
-	message: `You have exceeded your ${maxLimit} requests per minute limit.`,
+	max: g.Globals.maxRateLimit,
+	message: `You have exceeded your ${g.Globals.maxRateLimit} requests per minute limit.`,
 	headers: true,
 });
 
