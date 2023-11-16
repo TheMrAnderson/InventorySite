@@ -14,7 +14,7 @@ const rateLimitMiddleware = require('./rateLimiter')
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(helmet());
+// app.use(helmet());
 app.use(rateLimitMiddleware);
 
 // Begin reading from stdin so the process does not exit
