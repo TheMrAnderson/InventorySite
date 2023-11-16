@@ -109,4 +109,6 @@ app.listen(port, () => {
 p.on('SIGTERM', () => {
 	// log.verbose('App Ended')
 	g.Globals.mqttClient.end();
+	console.log('MQTT Disconnected');
+	console.log('Website shut down');
 })
