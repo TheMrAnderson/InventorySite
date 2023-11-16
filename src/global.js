@@ -11,8 +11,7 @@ var Globals = {
 	shoppingListTopic: undefined,
 	mqttServerAddress: undefined,
 	invListData: undefined,
-	shoppingListData: undefined,
-	maxRateLimit: undefined
+	shoppingListData: undefined
 };
 
 const validateConfig = () => {
@@ -31,8 +30,6 @@ const validateConfig = () => {
 		msg += 'MQTT server address not specified. ';
 	if (Globals.shoppingListTopic === undefined)
 		msg += 'Shopping list topic not specified. ';
-	if (Globals.maxRateLimit === undefined)
-		msg += 'Max rate limit not specified'
 
 	if (msg === '')
 		return;

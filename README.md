@@ -7,7 +7,6 @@ Website to view and update inventory for ClubAnderson.  Updates are sent via MQT
 - `LOGTOPIC`: MQTT topic to send the event logs from the app
 - `TOPICFOLDER`: MQTT folder for all events to be created within
 - `MQTTSERVERADDRESS`: MQTT broker address eg. mqtt://192.168.0.1
-- `MAXRATELIMIT`: Maximum number of web requests per minute to allow before limiting the client
 
 ## Ports
 
