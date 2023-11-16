@@ -9,11 +9,13 @@ const https = require("https");
 const addUpdateView = require('./addUpdate')
 const consumeView = require('./consume')
 const shoppingListView = require('./shoppingList')
+const rateLimitMiddleware = require('./rateLimiter')
 
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(helmet());
+app.use(rateLimitMiddleware);
 
 // Begin reading from stdin so the process does not exit
 p.stdin.resume();
