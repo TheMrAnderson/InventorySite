@@ -7,6 +7,7 @@ const helmet = require('helmet');
 require('dotenv').config();
 const addUpdateView = require('./addUpdate')
 const consumeView = require('./consume')
+const shoppingListView = require('./shoppingList')
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -89,11 +90,12 @@ app.get('/', (req, res) => {
 	if (g.Globals.invListData == undefined)
 		res.render('nolist')
 	else
-		res.render('index', { data: g.Globals.invListData });
+		res.render('index', { data: g.Globals.invListData, title: 'Inventory List' });
 })
 app.use(express.urlencoded({ extended: true }))
 app.use('/consume', consumeView)
 app.use('/addUpdate', addUpdateView)
+app.use('/shoppingList', shoppingListView)
 
 app.listen(port, () => {
 	// log.verbose()

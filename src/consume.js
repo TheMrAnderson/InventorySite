@@ -1,14 +1,14 @@
-const g = require('./global')
-const mqtt = require('mqtt')
-const express = require('express')
-const router = express.Router()
+const g = require('./global');
+const mqtt = require('mqtt');
+const express = require('express');
+const router = express.Router();
 
 router.use((req, res, next) => {
 	next()
 });
 
 router.get('/', (req, res) => {
-	res.render('consume');
+	res.render('consume', { title: 'Consume' });
 });
 
 router.post('/', (req, res) => {
