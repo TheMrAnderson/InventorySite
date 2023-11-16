@@ -5,6 +5,7 @@ const mqtt = require('mqtt');
 const express = require('express');
 const helmet = require('helmet');
 require('dotenv').config();
+const https = require("https");
 const addUpdateView = require('./addUpdate')
 const consumeView = require('./consume')
 const shoppingListView = require('./shoppingList')
@@ -28,6 +29,10 @@ g.Globals.shoppingListTopic = process.env.SHOPPINGLISTTOPIC || `${topicFolder}/s
 g.Globals.mqttServerAddress = process.env.MQTTSERVERADDRESS;
 g.validateConfig();
 const port = process.env.PORT || 3000;
+
+https
+	.createServer(app)
+	.listen(port);
 
 g.Globals.mqttClient = mqtt.connect(g.Globals.mqttServerAddress);
 g.Globals.mqttClient.on('connect', function () {
