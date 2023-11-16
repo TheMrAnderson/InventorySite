@@ -15,7 +15,6 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 // app.use(helmet());
-app.use(rateLimitMiddleware);
 
 // Begin reading from stdin so the process does not exit
 p.stdin.resume();
@@ -33,6 +32,7 @@ g.Globals.maxRateLimit = process.env.MAXRATELIMIT || 20;
 g.validateConfig();
 const port = process.env.PORT || 3000;
 
+app.use(rateLimitMiddleware);
 https.createServer(app);
 
 g.Globals.mqttClient = mqtt.connect(g.Globals.mqttServerAddress);
