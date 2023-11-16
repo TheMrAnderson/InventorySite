@@ -10,7 +10,7 @@
 		<%- include('./partials/nav'); %>
 	</header>
 
-	<main class="invPage">
+	<main class="shopingList">
 		<table>
 			<tr>
 				<th>Item Number</th>
@@ -29,7 +29,9 @@
 						<%= data[i].ItemNumber %>
 					</td>
 					<td>
-						<a href="/addUpdate?itemNumber=<%= data[i].ItemNumber %>"><%= data[i].Description %></a>
+						<a href="/addUpdate?itemNumber=<%= data[i].ItemNumber %>">
+							<%= data[i].Description %>
+						</a>
 					</td>
 					<td>
 						<%= data[i].CurrentQty %>
@@ -47,7 +49,9 @@
 						<%= data[i].Location %>
 					</td>
 					<td>
-						<a href="<%= data[i].SourceURL %>"><%= data[i].SourceURL == '' ? '' : 'Link' %></a>
+						<a href="<%= data[i].SourceURL %>">
+							<%= data[i].SourceURL=='' ? '' : 'Link' %>
+						</a>
 					</td>
 				</tr>
 				<% } %>

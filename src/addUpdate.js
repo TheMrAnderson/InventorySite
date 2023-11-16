@@ -1,6 +1,6 @@
-const g = require('./global')
-const express = require('express')
-const router = express.Router()
+const g = require('./global');
+const express = require('express');
+const router = express.Router();
 
 router.use((req, res, next) => {
 	next()
@@ -10,13 +10,15 @@ router.get('/', (req, res) => {
 	const itemNumber = req.query.itemNumber
 	let invItem;
 	if (itemNumber === null || itemNumber === undefined) {
+		title = 'Add';
 		;
 	} else {
+		title = 'Update';
 		invItem = g.Globals.invListData.find(i => i.ItemNumber == itemNumber);
 	}
 
 	res.render('addUpdate', {
-		data: invItem
+		data: invItem, title: title
 	});
 });
 
