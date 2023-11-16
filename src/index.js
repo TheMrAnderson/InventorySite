@@ -32,9 +32,7 @@ g.Globals.mqttServerAddress = process.env.MQTTSERVERADDRESS;
 g.validateConfig();
 const port = process.env.PORT || 3000;
 
-https
-	.createServer(app)
-	.listen(port);
+https.createServer(app);
 
 g.Globals.mqttClient = mqtt.connect(g.Globals.mqttServerAddress);
 g.Globals.mqttClient.on('connect', function () {
