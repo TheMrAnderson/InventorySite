@@ -9,6 +9,7 @@ COPY . .
 RUN chown -R node /usr/src/app
 
 EXPOSE 1883
+EXPOSE 3000
 
 USER node
 
