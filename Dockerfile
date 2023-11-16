@@ -12,4 +12,6 @@ EXPOSE 1883
 
 USER node
 
+HEALTHCHECK --interval=1m30s --timeout=2s --start-period=5s CMD node /usr/src/app/src/healthcheck.js
+
 CMD ["node", "/usr/src/app/src/index.js"]
