@@ -61,7 +61,7 @@ g.Globals.mqttClient.on('connect', function () {
 g.Globals.mqttClient.on('message', function (topic, message, packet) {
 	let obj;
 	if (packet.topic != null) {
-		const stringBuf = packet.payload.toString('utf-8');
+		const stringBuf = packet.payload.toString('utf8');
 		if (stringBuf.length == 0)
 			return;
 		obj = JSON.parse(stringBuf);
