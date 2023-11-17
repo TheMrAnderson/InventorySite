@@ -1,4 +1,4 @@
-name: Docker Image Dev - Latest
+name: Docker Image Prod - Stable
 
 on:
   push:
