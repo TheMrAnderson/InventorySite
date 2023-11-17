@@ -2,7 +2,7 @@ var http = require("http");
 require('dotenv').config();
 
 const options = {
-	host: 127.0.0.1,
+	host: "127.0.0.1",
 	port: 3000,
 	timeout: 2000
 };
