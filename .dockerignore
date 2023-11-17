@@ -1,0 +1,9 @@
+**/.gitignore
+.env
+**/node_modules
+**/.git
+npm-debug.log
+**/sample_data
+**/.vscode
+**/helpfulscripts.md
+**/Makefile
