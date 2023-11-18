@@ -1,20 +1,20 @@
 export default function Nav({ title: title }) {
 	return (
-		<nav class="navbar">
+		<nav className="navbar">
 			<h2>{title}</h2>
 			<title>Inventory | {title}</title>
 			{/* <!-- NAVIGATION MENU --> */}
-			<ul class="nav-links">
+			<ul className="nav-links">
 				{/* <!-- USING CHECKBOX HACK --> */}
 				<input type="checkbox" id="checkbox_toggle" />
-				<label for="checkbox_toggle" class="hamburger">&#9776;</label>
+				<label for="checkbox_toggle" className="hamburger">&#9776;</label>
 				{/* <!-- NAVIGATION MENUS --> */}
-				<div class="menu">
+				<div className="menu">
 					<li><a href="/">Inventory List</a></li>
-					<li class="services">
+					<li className="services">
 						<a href="/">Actions</a>
 						{/* <!-- DROPDOWN MENU --> */}
-						<ul class="dropdown">
+						<ul className="dropdown">
 							<li><a href="/addupdate">Add</a></li>
 							<li><a href="/consume">Consume</a></li>
 							<li><a href="/shoppinglist">View Shopping List</a></li>
