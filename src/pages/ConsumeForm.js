@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Nav from '../components/Nav';
 
 function ConsumeForm() {
 	const { register, handleSubmit, formState: { errors } } = useForm();
@@ -8,19 +9,20 @@ function ConsumeForm() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<input type="text" placeholder="Item Number" {...register("Item Number", { required: true })} />
+			<>
+				<label>Item Number:</label>
+				<input type="text" placeholder="Item Number" {...register("Item Number", { required: true })} />
+			</>
 
 			<input type="submit" />
 		</form>
 	);
 }
 
-export default function Consume({ item: item }) {
+export default function Consume() {
 	return (
 		<>
-			{
-				item === undefined ? <Nav title={"Add Inventory"} /> : <Nav title={"Edit Inventory"} />
-			}
+			<Nav title={"Consume"} />
 			<ConsumeForm />
 		</>);
 }

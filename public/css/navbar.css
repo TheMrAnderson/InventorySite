@@ -36,7 +36,7 @@
 }
 
 .menu li {
-  padding: 5px 5px;
+  padding: 1px 1px;
 }
 
 /* DROPDOWN MENU */
@@ -55,7 +55,7 @@
 }
 
 .dropdown li+li {
-  margin-top: 10px;
+  margin-top: 1px;
 }
 
 .dropdown li {
@@ -105,7 +105,7 @@ input[type=checkbox] {
   }
 
   .menu li+li {
-    margin-top: 12px;
+    margin-top: 1px;
   }
 
   input[type=checkbox]:checked~.menu {

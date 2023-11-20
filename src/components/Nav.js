@@ -1,4 +1,6 @@
-export default function Nav({ title: title }) {
+import { Link } from 'react-router-dom';
+
+export default function Nav({ title }) {
 	return (
 		<nav className="navbar">
 			<h2>{title}</h2>
@@ -15,9 +17,9 @@ export default function Nav({ title: title }) {
 						<a href="/">Actions</a>
 						{/* <!-- DROPDOWN MENU --> */}
 						<ul className="dropdown">
-							<li><a href="/addupdate">Add</a></li>
-							<li><a href="/consume">Consume</a></li>
-							<li><a href="/shoppinglist">View Shopping List</a></li>
+							<li><Link to="/addUpdate">Add</Link></li>
+							{/* <li><Link to="/consume">Consume</Link></li> */}
+							{/* <li><Link to="/shoppingList">View Shopping List</Link></li> */}
 						</ul>
 					</li>
 				</div>

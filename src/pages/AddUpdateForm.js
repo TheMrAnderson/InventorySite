@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Nav from '../components/Nav';
+import { useParams } from "react-router-dom";
 
 function AddUpdateForm({ item }) {
 	const { register, handleSubmit, formState: { errors } } = useForm();
@@ -53,7 +55,8 @@ function AddUpdateForm({ item }) {
 	);
 }
 
-export default function AddUpdate({ item }) {
+export default function AddUpdate() {
+	const { item } = useParams();
 	return (
 		<>
 			{

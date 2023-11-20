@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function InventoryType({ item }) {
 	return <>{item?.InventoryType === 0 ? 'Piece' : 'Bulk'}</>;
@@ -15,10 +15,9 @@ function SourceUrlLinkTag({ item }) {
 	const urlExists = item?.SourceURL ? true : false;
 	const urlText = urlExists ? 'Source' : '';
 	const urlLink = urlExists ? item.SourceURL : '';
+	return <>Text: {urlText}, Link: {urlLink}</>
 
-	return (<a href={urlLink}>
-		<>{urlText}</>
-	</a>);
+	// return (<Link to={urlLink}>{urlText}</Link>);
 }
 
 function InventoryItemRow({ item }) {
@@ -26,12 +25,18 @@ function InventoryItemRow({ item }) {
 		<span style={{ color: 'red' }}>
 			{item?.Description}
 		</span>;
+	// const navigate = useNavigate();
+
+	// function handleClick(event) {
+	// 	navigate(`/addUpdate${item.ItemNumber}`);
+	// }
 
 
 	return (
 		<tr>
 			<td>{item?.ItemNumber}</td>
-			<td><a href="/addUpdate?itemNumber={item.ItemNumber}">{name}</a></td>
+			{/* <td><Link to={`addUpdate/${item.ItemNumber}`}>{name}</Link></td> */}
+			<td>{name}</td>
 			<td>{item?.CurrentQty}</td>
 			<td><InventoryType item={item} /></td>
 			<td>{item?.MinQty}</td>
@@ -43,21 +48,6 @@ function InventoryItemRow({ item }) {
 }
 
 export default function InventoryTable({ items }) {
-	const rows = [];
-	const navigate = useNavigate();
-
-	function handleClick(event) {
-		navigate('/target-route');
-	}
-
-	items.forEach((item) => {
-		rows.push(
-			<InventoryItemRow
-				item={item}
-				key={item.ItemNumber} />
-		);
-	});
-
 	return (
 		<table>
 			<thead>
@@ -72,7 +62,11 @@ export default function InventoryTable({ items }) {
 					<th>URL</th>
 				</tr>
 			</thead>
-			<tbody>{rows}</tbody>
+			<tbody>
+				{items.map(item => {
+					return <InventoryItemRow item={item} key={item.ItemNumber} />
+				})}
+			</tbody>
 		</table>
 	);
 }
