@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Nav from "../components/Nav";
 import { useParams } from "react-router-dom";
+import '../css/Form.css'
 
 function AddUpdateForm({ item }) {
   const {
@@ -16,20 +17,22 @@ function AddUpdateForm({ item }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <>
-        <label>Item Number:</label>
+      <div>
+        <label for="itemNumber">Item Number:</label>
         <input
+          id="itemNumber"
           type="text"
           placeholder="Item Number"
           value={item?.ItemNumber}
-          readonly
+          readOnly
           style={{ color: 'Grey', opacity: '1' }}
           {...register("Item Number", {})}
         />
-      </>
-      <>
-        <label>Item Description:</label>
+      </div>
+      <div>
+        <label for="itemDesc">Item Description:</label>
         <input
+          id="itemDesc"
           type="text"
           placeholder="Item Description"
           value={item?.Description}
@@ -38,8 +41,8 @@ function AddUpdateForm({ item }) {
             message: "Description is required",
           })}
         />
-      </>
-      <>
+      </div>
+      <div>
         <label>Current Qty:</label>
         <input
           type="number"
@@ -51,8 +54,8 @@ function AddUpdateForm({ item }) {
             message: "Qty is required and must be at least 0",
           })}
         />
-      </>
-      <>
+      </div>
+      <div>
         <label>Source URL:</label>
         <input
           type="text"
@@ -60,23 +63,35 @@ function AddUpdateForm({ item }) {
           value={item?.SourceURL}
           {...register}
         />
-      </>
-      <>
-        <label>Inventory Type</label>
-        <input
-          {...register("Inventory Type", { required: true })}
-          type="radio"
-          value="Piece"
-          checked={isPiece}
-        />
-        <input
-          {...register("Inventory Type", { required: true })}
-          type="radio"
-          value="Bulk"
-          checked={!isPiece}
-        />
-      </>
-      <>
+      </div>
+      <div>
+        <label>Inventory Type:</label>
+        <span >
+          <input
+            {...register("Inventory Type", { required: true })}
+            id="radioPiece"
+            type="radio"
+            value="Piece"
+            name="invType"
+            selected={isPiece}
+            className="radioOption"
+          />
+          <span className="radioLabel">Piece</span>
+        </span>
+        <span>
+          <input
+            {...register("Inventory Type", { required: true })}
+            id="radioBulk"
+            type="radio"
+            value="Bulk"
+            name="invType"
+            selected={!isPiece}
+            className="radioOption"
+          />
+          <span className="radioLabel">Bulk</span>
+        </span>
+      </div>
+      <div>
         <label>Manufacturer:</label>
         <input
           type="text"
@@ -84,8 +99,8 @@ function AddUpdateForm({ item }) {
           value={item?.Manufacturer}
           {...register("Manufacturer", {})}
         />
-      </>
-      <>
+      </div>
+      <div>
         <label>Part Number:</label>
         <input
           type="text"
@@ -93,8 +108,8 @@ function AddUpdateForm({ item }) {
           value={item?.PartNumber}
           {...register("Part Number", {})}
         />
-      </>
-      <>
+      </div>
+      <div>
         <label>Min Qty:</label>
         <input
           type="number"
@@ -106,8 +121,8 @@ function AddUpdateForm({ item }) {
             message: "Min Qty is required and must be at least 0",
           })}
         />
-      </>
-      <>
+      </div>
+      <div>
         <label>Location:</label>
         <input
           type="text"
@@ -118,9 +133,10 @@ function AddUpdateForm({ item }) {
             message: "Location is required",
           })}
         />
-      </>
-
-      <input type="submit" />
+      </div>
+      <div>
+        <input type="submit" className="button" value="Save" />
+      </div>
     </form>
   );
 }

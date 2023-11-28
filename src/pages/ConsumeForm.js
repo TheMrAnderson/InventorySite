@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Nav from "../components/Nav";
+import '../css/Form.css'
 // import errorSound from "../media/errorSound.mp3";
 // import successSound from "../media/successSound.mp3";
 
@@ -15,12 +16,14 @@ function ConsumeForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <>
+      <div>
         <label>Item Number:</label>
         <input type="text" placeholder="Item Number" {...register("Item Number", { required: true })} />
-      </>
+      </div>
 
-      <input type="submit" />
+      <div>
+        <input type="submit" className="button" value="Consume" />
+      </div>
     </form>
   );
 }

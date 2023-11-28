@@ -1,0 +1,24 @@
+label {
+	padding-right: 5px;
+}
+
+input {
+	margin-top: 5px;
+}
+
+.radioOption {
+	padding: 0;
+	aspect-ratio: 1/1;
+	height: 100%;
+	max-width: 20px;
+}
+
+.radioLabel {
+	padding-right: 10px;
+}
+
+.button {
+	max-width: 150px;
+	float: left;
+	margin-left: 5%;
+}
