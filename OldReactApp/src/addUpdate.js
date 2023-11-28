@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 		;
 	} else {
 		title = 'Update';
-		invItem = g.Globals.invListData.find(i => i.ItemNumber === itemNumber);
+		invItem = g.Globals.invListData.find(i => i.ItemNumber == itemNumber);
 	}
 
 	res.render('addUpdate', {
