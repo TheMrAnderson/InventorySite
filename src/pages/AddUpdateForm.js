@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import Nav from "../components/Nav";
 import { useParams } from "react-router-dom";
@@ -8,70 +8,61 @@ function AddUpdateForm({ item }) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+
+  const invType = watch("invType");
+
+  console.log(invType);
+
+  const onSubmit = (data) => {
+    setD(JSON.stringify(data));
+    console.log("Data", JSON.stringify(d));
+    console.log("Errors", JSON.stringify(errors));
+  };
+
+  const [d, setD] = useState("");
 
   const isPiece = item?.InventoryType === 0 ?? true;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label for="itemNumber">Item Number:</label>
+        <label htmlFor="itemNumber">Item Number:</label>
         <input
           id="itemNumber"
           type="text"
           placeholder="Item Number"
           value={item?.ItemNumber}
-          readOnly
+          disabled
           style={{ color: 'Grey', opacity: '1' }}
-          {...register("Item Number", {})}
+          {...register("itemNumber", {})}
         />
       </div>
       <div>
-        <label for="itemDesc">Item Description:</label>
+        <label htmlFor="itemDesc">Item Description:</label>
         <input
           id="itemDesc"
           type="text"
           placeholder="Item Description"
           value={item?.Description}
-          {...register("Item Description", {
-            required: true,
-            message: "Description is required",
+          {...register("itemDesc", {
+            required: 'Description is required. Everything is called something',
           })}
         />
+        <span className="errorText">{errors?.itemDesc?.message}</span>
       </div>
       <div>
-        <label>Current Qty:</label>
-        <input
-          type="number"
-          placeholder="Current Qty"
-          value={item?.CurrentQty}
-          {...register("Current Qty", {
-            required: true,
-            min: 0,
-            message: "Qty is required and must be at least 0",
-          })}
-        />
-      </div>
-      <div>
-        <label>Source URL:</label>
-        <input
-          type="text"
-          placeholder="Source URL"
-          value={item?.SourceURL}
-          {...register}
-        />
-      </div>
-      <div>
-        <label>Inventory Type:</label>
+        <label htmlFor="invType">Inventory Type:</label>
         <span >
           <input
-            {...register("Inventory Type", { required: true })}
+            {...register("invType", {
+              required: "An inventory type must be selected. It's got to be something"
+            })}
             id="radioPiece"
             type="radio"
-            value="Piece"
+            value="0"
             name="invType"
             selected={isPiece}
             className="radioOption"
@@ -80,59 +71,82 @@ function AddUpdateForm({ item }) {
         </span>
         <span>
           <input
-            {...register("Inventory Type", { required: true })}
+            {...register("invType", { required: "An inventory type must be selected. It's got to be something" })}
             id="radioBulk"
             type="radio"
-            value="Bulk"
+            value="1"
             name="invType"
             selected={!isPiece}
             className="radioOption"
           />
           <span className="radioLabel">Bulk</span>
         </span>
+        <span className="errorText">{errors?.invText?.message}</span>
+      </div>
+      {invType === "0" &&
+        <>
+          <div>
+            <label htmlFor="currQty">Current Qty:</label>
+            <input
+              type="number"
+              placeholder="Current Qty"
+              value={item?.CurrentQty}
+              {...register("currQty", {})}
+            />
+          </div>
+          <div>
+            <label htmlFor="minQty">Min Qty:</label>
+            <input
+              type="number"
+              placeholder="Min Qty"
+              value={item?.MinQty}
+              {...register("minQty", {
+                min: 0,
+              })}
+            />
+          </div>
+        </>
+      }
+      <div>
+        <label htmlFor="sourceUrl">Source URL:</label>
+        <input
+          type="text"
+          placeholder="Source URL"
+          pattern="^(http|https)://"
+          value={item?.SourceURL}
+          {...register("sourceUrl", {})}
+        />
+        <span className="errorText">{errors?.sourceUrl?.message}</span>
       </div>
       <div>
-        <label>Manufacturer:</label>
+        <label htmlFor="mfr">Manufacturer:</label>
         <input
           type="text"
           placeholder="Manufacturer"
           value={item?.Manufacturer}
-          {...register("Manufacturer", {})}
+          {...register("mfr", {})}
         />
       </div>
       <div>
-        <label>Part Number:</label>
+        <label htmlFor="partNo">Part Number:</label>
         <input
           type="text"
           placeholder="Part Number"
           value={item?.PartNumber}
-          {...register("Part Number", {})}
+          {...register("partNo", {})}
         />
       </div>
       <div>
-        <label>Min Qty:</label>
-        <input
-          type="number"
-          placeholder="Min Qty"
-          value={item?.MinQty}
-          {...register("Min Qty", {
-            required: true,
-            min: 0,
-            message: "Min Qty is required and must be at least 0",
-          })}
-        />
-      </div>
-      <div>
-        <label>Location:</label>
+        <label htmlFor="location">Location:</label>
         <input
           type="text"
           placeholder="Location"
           value={item?.Location}
-          {...register("Location", {
-            required: true,
-            message: "Location is required",
+          {...register("location", {
+            required: "Location is required. We can't have something nowhere",
           })}
         />
+        <span className="errorText">{errors?.location?.message}</span>
       </div>
       <div>
         <input type="submit" className="button" value="Save" />

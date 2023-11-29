@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import Nav from "../components/Nav";
 import '../css/Form.css'
@@ -11,14 +11,22 @@ function ConsumeForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+
+  const onSubmit = (data) => {
+    setD(JSON.stringify(data));
+    console.log("Data Submitted", d);
+    if (errors != null)
+      console.log("Errors", JSON.stringify(errors));
+  };
+
+  const [d, setD] = useState("");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label>Item Number:</label>
-        <input type="text" placeholder="Item Number" {...register("Item Number", { required: true })} />
+        <label htmlFor="itemNumber">Item Number:</label>
+        <input type="text" placeholder="Item Number" {...register("itemNumber", { required: true })} />
+        {errors.itemNumber && <span className="errorText">You can't consume nothing silly</span>}
       </div>
 
       <div>
