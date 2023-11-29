@@ -88,22 +88,36 @@ function AddUpdateForm({ item }) {
           <div>
             <label htmlFor="currQty">Current Qty:</label>
             <input
-              type="number"
+              type="text"
               placeholder="Current Qty"
               value={item?.CurrentQty}
-              {...register("currQty", {})}
+              {...register("currQty", {
+                required: 'Must specify a current qty',
+                pattern: {
+                  value: /^[+]?\d+([.]\d+)?$/,
+                  message: "Can't be less than 0",
+                },
+                valueAsNumber: true,
+              })}
             />
+            <span className="errorText">{errors?.currQty?.message}</span>
           </div>
           <div>
             <label htmlFor="minQty">Min Qty:</label>
             <input
-              type="number"
+              type="text"
               placeholder="Min Qty"
               value={item?.MinQty}
               {...register("minQty", {
-                min: 0,
+                required: 'Must specify a min qty',
+                pattern: {
+                  value: /^[+]?\d+([.]\d+)?$/,
+                  message: "Can't be less than 0",
+                },
+                valueAsNumber: true,
               })}
             />
+            <span className="errorText">{errors?.minQty?.message}</span>
           </div>
         </>
       }
