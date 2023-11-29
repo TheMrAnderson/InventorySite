@@ -1,28 +1,26 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { useForm } from "react-hook-form";
 import Nav from "../components/Nav";
 import { useParams } from "react-router-dom";
 import '../css/Form.css'
 
-function AddUpdateForm({ item }) {
+function AddUpdateForm({ itemNumber, items, setItems }) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const invType = watch("invType");
-
-  console.log(invType);
+  console.log(`AddUpdateForm: Item Number: ${itemNumber}, Items: ${items}`);
+  var item;
+  if (itemNumber && items !== undefined) {
+    item = items.find(i => i.ItemNumber === itemNumber);
+    console.log(`Found Item: ${item}`);
+  }
 
   const onSubmit = (data) => {
-    setD(JSON.stringify(data));
-    console.log("Data", JSON.stringify(d));
-    console.log("Errors", JSON.stringify(errors));
+    console.log(`Errors: ${errors}`);
   };
-
-  const [d, setD] = useState("");
 
   const isPiece = item?.InventoryType === 0 ?? true;
 
@@ -83,7 +81,7 @@ function AddUpdateForm({ item }) {
         </span>
         <span className="errorText">{errors?.invText?.message}</span>
       </div>
-      {invType === "0" &&
+      {item?.InventoryType === "0" &&
         <>
           <div>
             <label htmlFor="currQty">Current Qty:</label>
@@ -169,16 +167,17 @@ function AddUpdateForm({ item }) {
   );
 }
 
-export default function AddUpdate() {
-  const { item } = useParams();
+export default function AddUpdate({ items, setItems }) {
+  const { itemNumber } = useParams();
+  console.log(`AddUpdate: Item Number:${itemNumber}, Items: ${items}, SetItems: ${setItems}`);
   return (
     <>
-      {item === undefined ? (
+      {itemNumber === undefined ? (
         <Nav title={"Add Inventory"} />
       ) : (
         <Nav title={"Edit Inventory"} />
       )}
-      <AddUpdateForm />
+      <AddUpdateForm itemNumber={itemNumber} items={items} setItems={setItems} />
     </>
   );
 }

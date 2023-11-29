@@ -19,7 +19,7 @@ function SourceUrlLinkTag({ item }) {
   return (<Link to={urlLink}>{urlText}</Link>);
 }
 
-function InventoryItemRow({ item }) {
+function InventoryItemRow({ item, items, setItems }) {
   const name =
     item?.CurrentQty > item?.MinQty ? (
       item?.Description
@@ -31,7 +31,7 @@ function InventoryItemRow({ item }) {
     <tr>
       <td>{item?.ItemNumber}</td>
       <td>
-        <Link to={`addUpdate/${item.ItemNumber}`}>{name}</Link>
+        <Link to={`addUpdate/${item.ItemNumber}`} items={items} setItems={setItems}>{name}</Link>
       </td>
       <td>{item?.CurrentQty}</td>
       <td>
@@ -49,7 +49,7 @@ function InventoryItemRow({ item }) {
   );
 }
 
-export default function InventoryTable({ items }) {
+export default function InventoryTable({ items, setItems }) {
   return (
     <table>
       <thead>
@@ -66,7 +66,7 @@ export default function InventoryTable({ items }) {
       </thead>
       <tbody>
         {items.map((item) => {
-          return <InventoryItemRow item={item} key={item.ItemNumber} />;
+          return <InventoryItemRow item={item} items={items} setItems={setItems} key={item.ItemNumber} />;
         })}
       </tbody>
     </table>
