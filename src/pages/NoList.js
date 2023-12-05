@@ -7,7 +7,7 @@ function NoneFound() {
 export default function NoList() {
   return (
     <>
-      <Nav title={"No Inventory Found"} />
+      <Nav title="No Inventory Found" />
       <NoneFound />
     </>
   );

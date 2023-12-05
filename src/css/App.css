@@ -67,3 +67,8 @@ a:active {
   background-color: rgb(1, 133, 143);
   color: seashell;
 }
+
+.reactSelect {
+  display: inline-block;
+  padding-top: 3px;
+}

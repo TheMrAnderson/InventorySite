@@ -1,28 +1,40 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import Nav from "../components/Nav";
 import { useParams } from "react-router-dom";
 import '../css/Form.css'
+import { INV_TYPE_OPTIONS } from "../App";
 
-function AddUpdateForm({ itemNumber, items, setItems }) {
+
+const InvTypeMenuOptions = () => {
+  return (
+    <>
+      <option value="">Select inventory type</option>
+      {INV_TYPE_OPTIONS.map(o => (
+        <option key={o.value} value={o.value}>{o.label}</option>
+      ))}
+    </>
+  )
+}
+
+const AddUpdateForm = props => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  console.log(`AddUpdateForm: Item Number: ${itemNumber}, Items: ${items}`);
-  var item;
-  if (itemNumber && items !== undefined) {
-    item = items.find(i => i.ItemNumber === itemNumber);
-    console.log(`Found Item: ${item}`);
+  let item;
+  if (props.itemNumber && props.items !== undefined) {
+    item = props.items.find(i => i.ItemNumber === props.itemNumber);
   }
+
+  const [invType, setInvType] = useState(item?.InventoryType);
 
   const onSubmit = (data) => {
     console.log(`Errors: ${errors}`);
+    console.log(data);
   };
-
-  const isPiece = item?.InventoryType === 0 ?? true;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -52,36 +64,20 @@ function AddUpdateForm({ itemNumber, items, setItems }) {
         <span className="errorText">{errors?.itemDesc?.message}</span>
       </div>
       <div>
-        <label htmlFor="invType">Inventory Type:</label>
-        <span >
-          <input
-            {...register("invType", {
-              required: "An inventory type must be selected. It's got to be something"
-            })}
-            id="radioPiece"
-            type="radio"
-            value="0"
-            name="invType"
-            selected={isPiece}
-            className="radioOption"
-          />
-          <span className="radioLabel">Piece</span>
-        </span>
-        <span>
-          <input
-            {...register("invType", { required: "An inventory type must be selected. It's got to be something" })}
-            id="radioBulk"
-            type="radio"
-            value="1"
-            name="invType"
-            selected={!isPiece}
-            className="radioOption"
-          />
-          <span className="radioLabel">Bulk</span>
-        </span>
+        <label htmlFor="invTypeSelect">Inventory Type:</label>
+        <div className="reactSelect">
+          <select
+            value={invType}
+            onChange={e => {
+              setInvType(e.target.value)
+            }
+            }>
+            <InvTypeMenuOptions />
+          </select>
+        </div>
         <span className="errorText">{errors?.invText?.message}</span>
       </div>
-      {item?.InventoryType === "0" &&
+      {invType !== 1 &&
         <>
           <div>
             <label htmlFor="currQty">Current Qty:</label>
@@ -169,13 +165,12 @@ function AddUpdateForm({ itemNumber, items, setItems }) {
 
 export default function AddUpdate({ items, setItems }) {
   const { itemNumber } = useParams();
-  console.log(`AddUpdate: Item Number:${itemNumber}, Items: ${items}, SetItems: ${setItems}`);
   return (
     <>
       {itemNumber === undefined ? (
-        <Nav title={"Add Inventory"} />
+        <Nav title="Add Inventory" />
       ) : (
-        <Nav title={"Edit Inventory"} />
+        <Nav title="Edit Inventory" />
       )}
       <AddUpdateForm itemNumber={itemNumber} items={items} setItems={setItems} />
     </>

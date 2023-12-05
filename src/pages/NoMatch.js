@@ -7,7 +7,7 @@ function NotFoundElement() {
 export default function NoMatch() {
 	return (
 		<>
-			<Nav title={"No Route Found"} />
+			<Nav title="No Route Found" />
 			<NotFoundElement />
 		</>
 	);

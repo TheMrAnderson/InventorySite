@@ -16,8 +16,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" exact element={<InventoryList items={items} setItems={setItems} />} />
-      <Route path="/addUpdate/:itemNumber" element={<AddUpdate />} />
-      <Route path="/addUpdate/" element={<AddUpdate />} />
+      <Route path="/addUpdate/:itemNumber" element={<AddUpdate items={items} setItems={setItems} />} />
+      <Route path="/addUpdate/" element={<AddUpdate items={items} setItems={setItems} />} />
       <Route path="/consume" element={<Consume />} />
       <Route path="/noList" element={<NoList />} />
       <Route path="/shoppingList" element={<ShoppingList items={shoppingList} setItems={setShoppingList} />} />
@@ -26,29 +26,51 @@ export default function App() {
   );
 }
 
+export const INV_TYPE_OPTIONS = [
+  { value: 0, label: 'Piece' },
+  { value: 1, label: 'Bulk' },
+  { value: 2, label: 'Quart' },
+  { value: 3, label: 'Gallon' },
+  { value: 4, label: 'Ounce' }
+];
+
 const invListItems = [
   {
-    ItemNumber: "INV-01",
+    ItemNumber: "1000",
     Description: "Test Description",
     CurrentQty: 2,
-    InventoryType: 0,
     MinQty: 1,
+    InventoryType: 0,
     Manufacturer: "Acme",
     PartNumber: "123",
     Location: "Mars",
     SourceURL: "https://www.acme.com/?Product=123",
+    Category: "Test Part"
   },
   {
-    ItemNumber: "INV-02",
+    ItemNumber: "1001",
     Description: "Item #2",
     CurrentQty: 5,
-    InventoryType: 1,
     MinQty: 7,
+    InventoryType: 1,
     Manufacturer: "Stark",
     PartNumber: "456",
     Location: "Uganda",
     SourceURL: "",
+    Category: "Test Part"
+  },
+  {
+    ItemNumber: "1002",
+    Description: "5w-40 Motor Oil",
+    CurrentQty: 23,
+    MinQty: 7,
+    InventoryType: 2,
+    Manufacturer: "Amsoil",
+    PartNumber: "5w-40",
+    Location: "Oil Shelf",
+    SourceURL: "",
+    Category: "Fluids"
   },
 ];
 
-const shoppingListItems = invListItems[1];
+const shoppingListItems = invListItems.filter(i => i.CurrentQty <= i.MinQty);

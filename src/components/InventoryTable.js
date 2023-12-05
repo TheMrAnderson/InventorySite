@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
+import { INV_TYPE_OPTIONS } from "../App";
 
 function InventoryType({ item }) {
-  return <>{item?.InventoryType === 0 ? "Piece" : "Bulk"}</>;
+  let obj = INV_TYPE_OPTIONS.find(i => i.value === item?.InventoryType);
+
+  return <>
+    {obj.label}
+  </>
 }
 
 function MfgPartNumber({ item }) {
@@ -34,14 +39,15 @@ function InventoryItemRow({ item, items, setItems }) {
         <Link to={`addUpdate/${item.ItemNumber}`} items={items} setItems={setItems}>{name}</Link>
       </td>
       <td>{item?.CurrentQty}</td>
+      <td>{item?.MinQty}</td>
       <td>
         <InventoryType item={item} />
       </td>
-      <td>{item?.MinQty}</td>
       <td>
         <MfgPartNumber item={item} />
       </td>
       <td>{item?.Location}</td>
+      <td>{item?.Category}</td>
       <td>
         <SourceUrlLinkTag item={item} />
       </td>
@@ -57,17 +63,18 @@ export default function InventoryTable({ items, setItems }) {
           <th>Item Number</th>
           <th>Description</th>
           <th>Current Qty</th>
-          <th>Inventory Type</th>
           <th>Min Qty</th>
+          <th>Inventory Type</th>
           <th>Mfg Part</th>
           <th>Location</th>
+          <th>Category</th>
           <th>URL</th>
         </tr>
       </thead>
       <tbody>
-        {items.map((item) => {
-          return <InventoryItemRow item={item} items={items} setItems={setItems} key={item.ItemNumber} />;
-        })}
+        {items.map((item) =>
+          <InventoryItemRow item={item} items={items} setItems={setItems} key={item.ItemNumber} />
+        )}
       </tbody>
     </table>
   );

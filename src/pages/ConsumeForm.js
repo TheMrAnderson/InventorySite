@@ -12,6 +12,8 @@ function ConsumeForm() {
     formState: { errors },
   } = useForm();
 
+  const [d, setD] = useState("");
+
   const onSubmit = (data) => {
     setD(JSON.stringify(data));
     console.log("Data Submitted", d);
@@ -19,13 +21,11 @@ function ConsumeForm() {
       console.log("Errors", JSON.stringify(errors));
   };
 
-  const [d, setD] = useState("");
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="itemNumber">Item Number:</label>
-        <input type="text" placeholder="Item Number" {...register("itemNumber", { required: true })} />
+        <input type="text" placeholder="Item Number" {...register("itemNumber", { required: "You must enter an item to consume" })} />
         {errors.itemNumber && <span className="errorText">You can't consume nothing silly</span>}
       </div>
 
@@ -39,7 +39,7 @@ function ConsumeForm() {
 export default function Consume() {
   return (
     <>
-      <Nav title={"Consume"} />
+      <Nav title="Consume" />
       <ConsumeForm />
     </>
   );

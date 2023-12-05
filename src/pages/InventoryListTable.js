@@ -5,8 +5,8 @@ export default function InventoryList({ items, setItems }) {
 
   return (
     <>
-      <Nav title={"Shopping List"} />
-      <InventoryTable items={items} />
+      <Nav title="Inventory List" />
+      <InventoryTable items={items} setItems={setItems} />
     </>
   );
 }
