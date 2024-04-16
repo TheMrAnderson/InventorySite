@@ -1,6 +1,6 @@
 # Inventory Site
 
-Website to view and update inventory for ClubAnderson.  Updates are sent via MQTT.
+Website to view and update inventory for ClubAnderson.  Updates are sent via MQTT and data is stored in MQTT.
 
 ## Variables
 
