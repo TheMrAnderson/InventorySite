@@ -16,7 +16,7 @@
     "express-rate-limit": "^7.1.5",
     "express": "^4.19.2",
     "helmet": "^6.2.0",
-    "mqtt": "^5.3.5",
+    "mqtt": "^5.5.0",
     "qrcode": "^1.5.3"
   }
 }
