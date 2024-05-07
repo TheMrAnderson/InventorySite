@@ -11,8 +11,8 @@
   "author": "ThrMrAnderson",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.3.2",
-    "ejs": "^3.1.9",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express-rate-limit": "^7.1.5",
     "express": "^4.19.2",
     "helmet": "^6.2.0",
