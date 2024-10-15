@@ -8,7 +8,7 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => {
 	if (g.Globals.shoppingListData == undefined)
-		res.render('nolist')
+		res.render('nolist', { title: 'No Shopping List' });
 	else
 		res.render('shoppingList', { data: g.Globals.shoppingListData, title: 'Shopping List' });
 })

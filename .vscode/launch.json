@@ -10,7 +10,6 @@
       "name": "Debug",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/src/index.js",
-      "runtimeExecutable": "/home/rooster/.nvm/versions/node/v19.8.1/bin/node",
       "env": {
         "LOGTOPIC": "logs",
         "TOPICFOLDER": "inventory_prod",
