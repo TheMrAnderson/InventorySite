@@ -2,9 +2,11 @@ name: Docker Image Dev - Latest
 
 on:
   push:
-    branches: ["dev"]
+    branches-ignore:
+      - "prod"
   pull_request:
-    branches: ["dev"]
+    branches-ignore:
+      - "prod"
 
 jobs:
   build:
